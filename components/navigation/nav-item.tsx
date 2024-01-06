@@ -76,7 +76,7 @@ export const NavItem = ({
       <AccordionTrigger
         onClick={() => onExpand(organization.id)}
         className={cn(
-          "flex items-center gap-x-2 p-1.5 text-neutral-700 rounded-md hover:bg-neutral-500/10 transition text-start no-underline hover:no-underline",
+          "flex items-center gap-x-2 p-1.5 rounded-md hover:bg-neutral-500/10 transition text-start no-underline hover:no-underline",
           isActive && !isExpanded && "bg-sky-500/10 text-sky-700"
         )}
       >
@@ -101,7 +101,7 @@ export const NavItem = ({
             size="sm"
             onClick={() => onClick(route.href)}
             className={cn(
-              "w-full font-normal justify-start pl-10 mb-1",
+              "w-full font-normal justify-start pl-10 mb-1 text-offblack dark:text-offgray",
               pathname === route.href && "bg-sky-500/10 text-sky-700"
             )}
             variant="ghost"

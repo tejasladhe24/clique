@@ -19,7 +19,7 @@ model Profile {
   updatedAt DateTime @updatedAt
 }
 
-model Channel {
+model Project {
   id String @id @default(uuid())
 
   orgId     String

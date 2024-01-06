@@ -1,20 +1,24 @@
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { HelpCircle, User2 } from "lucide-react";
+import { Plus, User2 } from "lucide-react";
 
 import { db } from "@/lib/db";
-import { Hint } from "@/components/hint";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { ActionButton } from "@/components/action-button";
+import { toast } from "sonner";
+import { createProject } from "@/actions/project/create";
+import { CreateProjectButton } from "./create-project-button";
 
-export const ChannelList = async () => {
+export const ProjectList = async () => {
   const { orgId } = auth();
 
   if (!orgId) {
     return redirect("/select-org");
   }
 
-  const channels = await db.channel.findMany({
+  const projects = await db.project.findMany({
     where: {
       orgId,
     },
@@ -25,20 +29,23 @@ export const ChannelList = async () => {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center font-semibold text-lg">
-        <User2 className="h-6 w-6 mr-2" />
-        Your Channels
+      <div className="flex items-center justify-between">
+        <div className="flex items-center font-semibold text-lg">
+          <User2 className="h-6 w-6 mr-2" />
+          Your Projects
+        </div>
+        <CreateProjectButton/>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {channels.map((channel: any) => (
+        {projects.map((project: any) => (
           <Link
-            key={channel.id}
-            href={`/channel/${channel.id}`}
+            key={project.id}
+            href={`/project/${project.id}`}
             className="group relative aspect-video bg-no-repeat bg-center bg-cover bg-sky-700 rounded-sm h-full w-full p-2 overflow-hidden"
-            style={{ backgroundImage: `url(${channel.imageThumbUrl})` }}
+            style={{ backgroundImage: `url(${project.imageThumbUrl})` }}
           >
             <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition" />
-            <p className="relative font-semibold text-white">{channel.title}</p>
+            <p className="relative font-semibold text-white">{project.title}</p>
           </Link>
         ))}
       </div>
@@ -46,7 +53,7 @@ export const ChannelList = async () => {
   );
 };
 
-ChannelList.Skeleton = function SkeletonBoardList() {
+ProjectList.Skeleton = function SkeletonBoardList() {
   return (
     <div className="grid gird-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
       <Skeleton className="aspect-video h-full w-full p-2" />

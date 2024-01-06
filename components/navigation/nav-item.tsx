@@ -43,7 +43,7 @@ export const NavItem = ({
 
   const routes = [
     {
-      label: "Channels",
+      label: "Projects",
       icon: <Layout className="h-4 w-4 mr-2" />,
       href: `/organization/${organization.id}`,
     },

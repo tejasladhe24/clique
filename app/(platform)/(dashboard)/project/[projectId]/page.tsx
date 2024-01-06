@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-import { db } from "@/lib/db";
+import Canvas from "@/components/canvas/canvas";
 
 interface ProjectIdPageProps {
   params: {
@@ -16,7 +16,7 @@ const ProjectIdPage = async ({ params }: ProjectIdPageProps) => {
     redirect("/select-org");
   }
 
-  return <div className="p-4 h-full overflow-x-auto">Hello porject</div>;
+  return <Canvas />;
 };
 
 export default ProjectIdPage;

@@ -58,7 +58,7 @@ const ProjectIdLayout = async ({
     <div className="relative h-full bg-no-repeat bg-cover bg-center">
       <ProjectNavbar project={project} />
       <div className="absolute inset-0 bg-sky-800/10" />
-      <main className="relative pt-28 h-full">{children}</main>
+      <main id="canvas-container" className="relative h-full">{children}</main>
     </div>
   );
 };

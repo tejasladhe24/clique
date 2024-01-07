@@ -13,7 +13,7 @@ const IndexPage = () => {
           <Link href={"#"}>
             <Button variant={"outline"}>Download for PC</Button>
           </Link>
-          <Link href={"/dashboard"}>
+          <Link href={"/sign-in"}>
             <Button>Open in Browser</Button>
           </Link>
         </div>
